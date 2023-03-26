@@ -18,7 +18,7 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
 
     const CopilotA = await deploy("CopilotA", {
         from: owner,
-        args: [],
+        args: [mockA.address],
         log: true,
     });
 };
