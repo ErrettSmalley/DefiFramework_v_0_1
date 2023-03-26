@@ -61,6 +61,8 @@ describe("MockA", async () => {
         expect(await ma.allowance(owner.address, user0.address)).to.equal(parseEther("100"));
     });
     it("mockA.func => decreaseAllowance()", async () => {
+        await ma.increaseAllowance(user0.address, parseEther("200"));
+        expect(await ma.allowance(owner.address, user0.address)).to.equal(parseEther("200"));
         await ma.decreaseAllowance(user0.address, parseEther("100"));
         expect(await ma.allowance(owner.address, user0.address)).to.equal(parseEther("100"));
     });
