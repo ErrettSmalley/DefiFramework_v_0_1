@@ -1,18 +1,6 @@
 import {deployments, ethers, getChainId, network} from "hardhat";
 import {
-    MLP,
-    MlpManager,
-    OrderBook,
-    PositionManager,
-    PriceFeed,
-    Reader,
-    RewardRouterV2,
-    Router, ShortsTracker,
-    Timelock,
-    Token,
-    Vault, VaultErrorController, VaultPriceFeed,
-    VaultReader,
-    VaultUtils
+    Vault
 } from "../typechain";
 import {parseUnits} from "ethers/lib/utils";
 import {BigNumber, BigNumberish, ContractTransaction} from "ethers";
@@ -37,24 +25,6 @@ export async function getContracts() {
     const chainId = await getChainId();
     const contracts: any = {
         vault: await ethers.getContract<Vault>("Vault"),
-        // router: await ethers.getContract<Router>("Router"),
-        // vaultPriceFeed: await ethers.getContract<VaultPriceFeed>("VaultPriceFeed"),
-        // wnative: await ethers.getContract<Token>("WNative"),
-        // weth: chainId == CHAIN_ID_LOCAL ? await ethers.getContract<Token>("WNative") : await ethers.getContract<Token>("WETH"),
-        // wbtc: await ethers.getContract<Token>("WBTC"),
-        // dai: await ethers.getContract<Token>("DAI"),
-        // usdm: await ethers.getContract<Token>("USDM"),
-        // timelock: await ethers.getContract<Timelock>("Timelock"),
-        // orderBook: await ethers.getContract<OrderBook>("OrderBook"),
-        // positionManager: await ethers.getContract<PositionManager>("PositionManager"),
-        // vaultReader: await ethers.getContract<VaultReader>("VaultReader"),
-        // reader: await ethers.getContract<Reader>("Reader"),
-        // vaultUtils: await ethers.getContract<VaultUtils>("VaultUtils"),
-        // vaultErrorController: await ethers.getContract<VaultErrorController>("VaultErrorController"),
-        // rewardRouter: await ethers.getContract<RewardRouterV2>("RewardRouter"),
-        // mlp: await ethers.getContract<MLP>("MLP"),
-        // mlpManager: await ethers.getContract<MlpManager>("MlpManager"),
-        // shortsTracker: await ethers.getContract<ShortsTracker>("ShortsTracker"),
     };
 
     let users: any = {
@@ -119,12 +89,6 @@ export async function getBlockTime(provider: any) {
     const blockNumber = await provider.getBlockNumber()
     const block = await provider.getBlock(blockNumber)
     return block.timestamp
-}
-
-export async function changeMarkPrice(feed: PriceFeed, price: number) {
-    await feed.setLatestAnswer(toChainlinkPrice(price));
-    await feed.setLatestAnswer(toChainlinkPrice(price));
-    await feed.setLatestAnswer(toChainlinkPrice(price));
 }
 
 export async function getGasFee(tx: ContractTransaction) {
