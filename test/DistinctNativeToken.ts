@@ -43,6 +43,27 @@ describe("MockA", async () => {
     it("mockA.func => balanceOf()", async () => {
         expect(await ma.balanceOf(owner.address)).to.equal(parseEther("1000000"));
     });
+    it("mockA.func => transfer()", async () => {
+        await ma.transfer(user0.address, parseEther("100"));
+        expect(await ma.balanceOf(user0.address)).to.equal(parseEther("100"));
+    });
+    it("mockA.func => transferFrom()", async () => {
+        await ma.approve(user0.address, parseEther("100"));
+        await ma.connect(user0).transferFrom(owner.address, user1.address, parseEther("100"));
+        expect(await ma.balanceOf(user1.address)).to.equal(parseEther("100"));
+    });
+    it("mockA.func => allowance()", async () => {
+        await ma.approve(user0.address, parseEther("100"));
+        expect(await ma.allowance(owner.address, user0.address)).to.equal(parseEther("100"));
+    });
+    it("mockA.func => increaseAllowance()", async () => {
+        await ma.increaseAllowance(user0.address, parseEther("100"));
+        expect(await ma.allowance(owner.address, user0.address)).to.equal(parseEther("100"));
+    });
+    it("mockA.func => decreaseAllowance()", async () => {
+        await ma.decreaseAllowance(user0.address, parseEther("100"));
+        expect(await ma.allowance(owner.address, user0.address)).to.equal(parseEther("100"));
+    });
 });
 
 
