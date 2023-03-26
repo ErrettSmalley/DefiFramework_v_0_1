@@ -11,12 +11,9 @@ describe("MockA", async () => {
         user0: any,
         user1: any,
         user2: any,
-
-        v: any,
         ma: any;
     beforeEach(async () => {
         let fixture = await setupFixture();
-        v = fixture.vault;
         ma = fixture.mockA;
 
         owner = fixture.owner;
@@ -24,10 +21,6 @@ describe("MockA", async () => {
         user1 = fixture.user1;
         user2 = fixture.user2;
     })
-    it("vault", async () => {
-        console.log(`v.gov: ${await v.gov()}`);
-        console.log(`v.address: ${v.address}`);
-    });
     it("mockA.func => name()", async () => {
         expect(await ma.name()).to.equal("MockA");
     });

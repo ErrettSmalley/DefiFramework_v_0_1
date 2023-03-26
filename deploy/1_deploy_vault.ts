@@ -10,14 +10,6 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
     const chainId = await getChainId();
 
 
-    const Vault = await deploy("Vault", {
-        from: owner,
-        args: [],
-        log: true,
-    });
-
-
-
     const mockA = await deploy("MockA", {
         from: owner,
         args: [parseEther("1000000")],

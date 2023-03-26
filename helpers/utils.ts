@@ -1,7 +1,4 @@
 import {deployments, ethers, getChainId, network} from "hardhat";
-import {
-    Vault
-} from "../typechain";
 import {parseUnits} from "ethers/lib/utils";
 import {BigNumber, BigNumberish, ContractTransaction} from "ethers";
 import {
@@ -24,7 +21,6 @@ export async function getContracts() {
     
     const chainId = await getChainId();
     const contracts: any = {
-        vault: await ethers.getContract<Vault>("Vault"),
         copilotA: await ethers.getContract("CopilotA"),
         mockA: await ethers.getContract("MockA"),
     };
@@ -34,8 +30,6 @@ export async function getContracts() {
     }
     
     if (chainId == CHAIN_ID_LOCAL) {
-        // contracts.wethPriceFeed = await ethers.getContract<PriceFeed>("WethPriceFeed");
-        // contracts.daiPriceFeed = await ethers.getContract<PriceFeed>("DaiPriceFeed");
         users.owner = await ethers.getNamedSigner("owner");
         users.user0 = await ethers.getNamedSigner("user0");
         users.user1 = await ethers.getNamedSigner("user1");

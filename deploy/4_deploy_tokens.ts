@@ -1,7 +1,6 @@
 import {DeployFunction} from "hardhat-deploy/types";
 import {CHAIN_ID_LOCAL, CHAIN_ID_MUMBAI, DISTINCT_CHAIN_IDS, getDeployByChainIdAndName} from "../helpers/chains";
 import {getDaiConfig, getWbtcConfig, getWethConfig, getWNativeConfigByChainId} from "../helpers/params";
-import {Vault} from "../typechain";
 import {toChainlinkPrice} from "../helpers/utils";
 import {parseEther, parseUnits} from "ethers/lib/utils";
 
