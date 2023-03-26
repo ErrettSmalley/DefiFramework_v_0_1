@@ -16,9 +16,17 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
         log: true,
     });
 
+
+
     const mockA = await deploy("MockA", {
         from: owner,
         args: [parseEther("1000000")],
+        log: true,
+    });
+
+    const CopilotA = await deploy("CopilotA", {
+        from: owner,
+        args: [],
         log: true,
     });
 };

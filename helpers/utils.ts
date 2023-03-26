@@ -25,6 +25,7 @@ export async function getContracts() {
     const chainId = await getChainId();
     const contracts: any = {
         vault: await ethers.getContract<Vault>("Vault"),
+        copilotA: await ethers.getContract("CopilotA"),
         mockA: await ethers.getContract("MockA"),
     };
 

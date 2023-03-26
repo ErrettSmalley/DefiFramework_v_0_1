@@ -69,18 +69,20 @@ describe("MockA", async () => {
 });
 
 
-describe("Vault", async () => {
+describe("copilotA", async () => {
     let
         owner: any,
         user0: any,
         user1: any,
         user2: any,
         v: any,
-        ma: any;
+        ma: any,
+        cpa: any;
     beforeEach(async () => {
         let fixture = await setupFixture();
         v = fixture.vault;
         ma = fixture.mockA;
+        cpa = fixture.copilotA;
 
         owner = fixture.owner;
         user0 = fixture.user0;
@@ -88,8 +90,11 @@ describe("Vault", async () => {
         user2 = fixture.user2;
     })
 
-    it("vault", async () => {
-        console.log(`v.gov: ${await v.gov()}`);
-        console.log(`v.address: ${v.address}`);
+    it("copilotA.func => name()", async () => {
+        expect(await cpa.name()).to.equal("CopilotA");
+    });
+
+    it("copilotA.func => symbol()", async () => {
+        expect(await cpa.symbol()).to.equal("CPA");
     });
 });
