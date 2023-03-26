@@ -9,7 +9,7 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
     const {execute, get} = deployments;
     const {owner} = await getNamedAccounts();
     const chainId = await getChainId();
-    
+
     let WETH;
     if (DISTINCT_CHAIN_IDS.includes(chainId)) {
         const WNative = await get("WNative");

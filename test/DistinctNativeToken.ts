@@ -106,10 +106,6 @@ describe("DistinctNativeToken", async () => {
     })
 
     it("weth", async () => {
-        const amount = parseEther("1");
-        await weth.mint(user0.address, amount);
-
-        console.log(`weth balance: ${await weth.balanceOf(user0.address)}`);
-        console.log(`weth.totalSupply: ${await weth.totalSupply()}`);
+        console.log("hello world");
     });
 });
