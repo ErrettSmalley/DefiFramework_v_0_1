@@ -5,4 +5,6 @@ contract CopilotAStorage {
     string public name;
     string public symbol;
     IERC20 public token;
+
+    mapping(address => uint256) public tokenBalance;
 }

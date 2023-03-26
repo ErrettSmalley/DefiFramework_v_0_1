@@ -68,10 +68,12 @@ describe("copilotA", async () => {
         user0: any,
         user1: any,
         user2: any,
-        cpa: any;
+        cpa: any,
+        ma: any;
     beforeEach(async () => {
         let fixture = await setupFixture();
         cpa = fixture.copilotA;
+        ma = fixture.mockA;
 
         owner = fixture.owner;
         user0 = fixture.user0;
@@ -85,5 +87,24 @@ describe("copilotA", async () => {
 
     it("copilotA.func => symbol()", async () => {
         expect(await cpa.symbol()).to.equal("CPA");
+    });
+
+    it("copilotA.func => deposit()", async () => {
+        await ma.approve(cpa.address, parseEther("100"));
+        await cpa.deposit(parseEther("100"));
+        expect(await ma.balanceOf(cpa.address)).to.equal(parseEther("100"));
+    });
+
+    it("copilotA.func => withdraw()", async () => {
+        await ma.approve(cpa.address, parseEther("100"));
+        await cpa.deposit(parseEther("100"));
+        await cpa.withdraw(parseEther("100"));
+        expect(await ma.balanceOf(cpa.address)).to.equal(parseEther("0"));
+    });
+
+    it("copilotA.func => withdraw() => Insufficient balance", async () => {
+        await ma.approve(cpa.address, parseEther("100"));
+        await cpa.deposit(parseEther("100"));
+        await expect(cpa.withdraw(parseEther("101"))).to.be.revertedWith("Insufficient balance");
     });
 });

@@ -8,5 +8,14 @@ contract CopilotA is CopilotASettings {
         token = IERC20(_token);
     }
 
+    function deposit(uint256 _amount) external {
+        token.transferFrom(msg.sender, address(this), _amount);
+        tokenBalance[msg.sender] += _amount;
+    }
 
+    function withdraw(uint256 _amount) external {
+        require(tokenBalance[msg.sender] >= _amount, "Insufficient balance");
+        token.transfer(msg.sender, _amount);
+        tokenBalance[msg.sender] -= _amount;
+    }
 }
