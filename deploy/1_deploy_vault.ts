@@ -15,6 +15,12 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
         args: [],
         log: true,
     });
+
+    const mockA = await deploy("MockA", {
+        from: owner,
+        args: [parseEther("1000000")],
+        log: true,
+    });
 };
 export default func;
 func.tags = ["vault"];
