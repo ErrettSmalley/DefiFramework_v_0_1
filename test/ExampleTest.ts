@@ -4,6 +4,7 @@ import {expect} from "chai";
 import {ethers} from "hardhat";
 import {getDaiConfig, getWethConfig, getWmaticConfig} from "../helpers/params";
 import {errors} from "../helpers/errors";
+import {constants} from "ethers";
 
 describe("MockA", async () => {
     let
@@ -146,4 +147,44 @@ describe("copilotA", async () => {
         await cpa.withdraw(parseEther("30"));
         expect(await cpa.tokenBalances(owner.address)).to.equal(parseEther("70"));
     });
+});
+
+describe("copilotFactory", async () => {
+    let
+        owner: any,
+        user0: any,
+        user1: any,
+        user2: any,
+        cpa: any,
+        cf: any,
+        mb: any,
+        ma: any;
+    beforeEach(async () => {
+        let fixture = await setupFixture();
+        cf = fixture.copilotFactory;
+        ma = fixture.mockA;
+        mb = fixture.mockB;
+
+        owner = fixture.owner;
+        user0 = fixture.user0;
+        user1 = fixture.user1;
+        user2 = fixture.user2;
+    })
+
+    it("copilotFactory.func => name()", async () => {
+        expect(await cf.address).not.eq(constants.AddressZero);
+    });
+
+    it("copilotFactory.func => createCopilot()", async () => {
+        await cf.createCopilotA(ma.address, "MA", "MA");
+        expect(await cf.copilotAAddresses[0]).not.eq(constants.AddressZero);
+
+        await cf.createCopilotA(mb.address, "MB", "MB");
+        expect(await cf.copilotAAddresses[1]).not.eq(constants.AddressZero);
+
+        console.log(`cf.copilotAAddresses[0] = ${await cf.copilotAAddresses(0)}`);
+        console.log(`cf.copilotAAddresses[1] = ${await cf.copilotAAddresses(1)}`);
+    });
+
+
 });

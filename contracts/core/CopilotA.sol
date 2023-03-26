@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 import "./storage/CopilotASettings.sol";
 contract CopilotA is CopilotASettings {
-    constructor(address _token){
-        name = "CopilotA";
-        symbol = "CPA";
+    constructor(address _token, string memory _name, string memory _symbol)  {
+        name = _name;
+        symbol = _symbol;
         token = IERC20(_token);
     }
 

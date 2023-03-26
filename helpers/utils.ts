@@ -22,7 +22,9 @@ export async function getContracts() {
     const chainId = await getChainId();
     const contracts: any = {
         copilotA: await ethers.getContract("CopilotA"),
+        copilotFactory: await ethers.getContract("CopilotFactory"),
         mockA: await ethers.getContract("MockA"),
+        mockB: await ethers.getContract("MockB"),
     };
 
     let users: any = {

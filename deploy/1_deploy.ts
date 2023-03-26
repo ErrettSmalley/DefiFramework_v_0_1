@@ -10,7 +10,15 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
     const chainId = await getChainId();
 
 
+
     const mockA = await deploy("MockA", {
+        from: owner,
+        args: [parseEther("1000000")],
+        log: true,
+    });
+
+
+    const mockB = await deploy("MockB", {
         from: owner,
         args: [parseEther("1000000")],
         log: true,
@@ -18,7 +26,13 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
 
     const CopilotA = await deploy("CopilotA", {
         from: owner,
-        args: [mockA.address],
+        args: [mockA.address,"CopilotA", "CPA"],
+        log: true,
+    });
+
+    const CopilotFactory = await deploy("CopilotFactory", {
+        from: owner,
+        args: [],
         log: true,
     });
 };
