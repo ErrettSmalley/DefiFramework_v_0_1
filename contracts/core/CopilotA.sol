@@ -10,12 +10,12 @@ contract CopilotA is CopilotASettings {
 
     function deposit(uint256 _amount) external {
         token.transferFrom(msg.sender, address(this), _amount);
-        tokenBalance[msg.sender] += _amount;
+        tokenBalances[msg.sender] += _amount;
     }
 
     function withdraw(uint256 _amount) external {
-        require(tokenBalance[msg.sender] >= _amount, "Insufficient balance");
+        require(tokenBalances[msg.sender] >= _amount, "Insufficient balance");
         token.transfer(msg.sender, _amount);
-        tokenBalance[msg.sender] -= _amount;
+        tokenBalances[msg.sender] -= _amount;
     }
 }

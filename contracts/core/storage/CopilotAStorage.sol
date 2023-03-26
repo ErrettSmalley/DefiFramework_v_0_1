@@ -8,5 +8,5 @@ contract CopilotAStorage is Ownable{
     string public symbol;
     IERC20 public token;
 
-    mapping(address => uint256) public tokenBalance;
+    mapping(address => uint256) public tokenBalances;
 }

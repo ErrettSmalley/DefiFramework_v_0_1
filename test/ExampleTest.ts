@@ -111,4 +111,39 @@ describe("copilotA", async () => {
     it("copilotA.func => owner()", async () => {
         expect(await cpa.owner()).to.equal(owner.address);
     });
+
+    it("copilotA.func => setName()", async () => {
+        await cpa.setName("CopilotA");
+        expect(await cpa.name()).to.equal("CopilotA");
+    });
+
+    it("copilotA.func => setSymbol()", async () => {
+        await cpa.setSymbol("CPA");
+        expect(await cpa.symbol()).to.equal("CPA");
+    });
+
+    it("copilotA.func => setToken()", async () => {
+        await cpa.setToken(ma.address);
+        expect(await cpa.token()).to.equal(ma.address);
+    });
+
+    it("copilotA.func => setToken() => reverted", async () => {
+        await expect(cpa.connect(user0).setToken(ma.address)).to.be.reverted;
+    });
+
+    it("copilotA.func => setName() => reverted", async () => {
+        await expect(cpa.connect(user0).setName("CopilotA")).to.be.reverted;
+    });
+
+    it("copilotA.func => setSymbol() => reverted", async () => {
+        await expect(cpa.connect(user0).setSymbol("CPA")).to.be.reverted;
+    });
+
+    it("copilotA.func => tokenBalance()", async () => {
+        await ma.approve(cpa.address, parseEther("100"));
+        await cpa.deposit(parseEther("100"));
+        expect(await cpa.tokenBalances(owner.address)).to.equal(parseEther("100"));
+        await cpa.withdraw(parseEther("30"));
+        expect(await cpa.tokenBalances(owner.address)).to.equal(parseEther("70"));
+    });
 });
