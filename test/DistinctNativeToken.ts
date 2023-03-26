@@ -68,13 +68,9 @@ describe("copilotA", async () => {
         user0: any,
         user1: any,
         user2: any,
-        v: any,
-        ma: any,
         cpa: any;
     beforeEach(async () => {
         let fixture = await setupFixture();
-        v = fixture.vault;
-        ma = fixture.mockA;
         cpa = fixture.copilotA;
 
         owner = fixture.owner;
