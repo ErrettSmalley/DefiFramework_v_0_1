@@ -107,4 +107,8 @@ describe("copilotA", async () => {
         await cpa.deposit(parseEther("100"));
         await expect(cpa.withdraw(parseEther("101"))).to.be.revertedWith("Insufficient balance");
     });
+
+    it("copilotA.func => owner()", async () => {
+        expect(await cpa.owner()).to.equal(owner.address);
+    });
 });
