@@ -105,7 +105,7 @@ describe("DistinctNativeToken", async () => {
         await router.connect(user0).approvePlugin(positionManager.address);
     })
 
-    it.only("weth", async () => {
+    it("weth", async () => {
         const amount = parseEther("1");
         await weth.mint(user0.address, amount);
 
