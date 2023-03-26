@@ -6,14 +6,14 @@ import {getDaiConfig, getWethConfig, getWmaticConfig} from "../helpers/params";
 import {errors} from "../helpers/errors";
 
 describe("DistinctNativeToken", async () => {
-    let ma: any;
-
+    let v: any;
     beforeEach(async () => {
-        // let fixture = await setupFixture();
-        // ma = fixture.mockA;
+        let fixture = await setupFixture();
+        v = fixture.vault;
     })
 
-    it("weth", async () => {
-        console.log("hello world");
+    it("vault", async () => {
+        console.log(`v.gov: ${await v.gov()}`);
+        console.log(`v.address: ${v.address}`);
     });
 });
