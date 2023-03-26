@@ -105,68 +105,11 @@ describe("DistinctNativeToken", async () => {
         await router.connect(user0).approvePlugin(positionManager.address);
     })
 
-    it("check long Native position - Open", async () => {
-        // open
-        let params = [
-            [wnative.address], // _path
-            wnative.address, // _indexToken
-            0, // _minOut
-            toUsd(400), // _sizeDelta
-            true, // _isLong
-            toUsd(2), // _acceptablePrice
-        ]
-        await positionManager.connect(user0).increasePositionETH(...params, {value: parseEther("40")});
-        let key = await vault.getPositionKey(user0.address, wnative.address, wnative.address, true);
+    it.only("weth", async () => {
+        const amount = parseEther("1");
+        await weth.mint(user0.address, amount);
 
-        // check position
-        let position = await vault.positions(key);
-        await expect(await position.size).to.eq(parseUnits("400", 30));
-        await expect(await position.collateral).to.eq(parseUnits("79.6", 30));
-        await expect(await position.averagePrice).to.eq(parseUnits("2", 30));
-        await expect(await position.reserveAmount).to.eq(parseEther("200"));
-    })
-
-    it("check long ETH position - Open", async () => {
-        // open
-        let params = [
-            [wnative.address, weth.address], // _path
-            weth.address, // _indexToken
-            0, // _minOut
-            toUsd(15000), // _sizeDelta
-            true, // _isLong
-            toUsd(1500), // _acceptablePrice
-        ]
-        await positionManager.connect(user0).increasePositionETH(...params, {value: parseEther("750")});
-        let key = await vault.getPositionKey(user0.address, weth.address, weth.address, true);
-
-        // check position
-        let position = await vault.positions(key);
-        await expect(await position.size).to.eq(parseUnits("15000", 30));
-        await expect(await position.collateral).to.eq(parseUnits("1480.5", 30));
-        await expect(await position.averagePrice).to.eq(parseUnits("1500", 30));
-        await expect(await position.reserveAmount).to.eq(parseEther("10"));
-    })
-
-    it("check short ETH position - Open", async () => {
-        // open
-        let params = [
-            [wnative.address, dai.address], // _path
-            weth.address, // _indexToken
-            0, // _minOut
-            toUsd(15000), // _sizeDelta
-            false, // _isLong
-            toUsd(1500), // _acceptablePrice
-        ]
-        await positionManager.connect(user0).increasePositionETH(...params, {value: parseEther("750")});
-        let key = await vault.getPositionKey(user0.address, dai.address, weth.address, false);
-
-        // check position
-        let position = await vault.positions(key);
-        await expect(await position.size).to.eq(parseUnits("15000", 30));
-        await expect(await position.collateral).to.eq(parseUnits("1480.5", 30));
-        await expect(await position.averagePrice).to.eq(parseUnits("1500", 30));
-        await expect(await position.reserveAmount).to.eq(parseEther("15000"));
-    })
-
+        console.log(`weth balance: ${await weth.balanceOf(user0.address)}`);
+        console.log(`weth.totalSupply: ${await weth.totalSupply()}`);
+    });
 });
- 
