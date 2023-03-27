@@ -30,11 +30,11 @@ const func: DeployFunction = async function ({deployments, getNamedAccounts, net
         log: true,
     });
 
-    const CopilotFactory = await deploy("CopilotFactory", {
-        from: owner,
-        args: [],
-        log: true,
-    });
+    // const CopilotFactory = await deploy("CopilotFactory", {
+    //     from: owner,
+    //     args: [],
+    //     log: true,
+    // });
 };
 export default func;
 func.tags = ["vault"];

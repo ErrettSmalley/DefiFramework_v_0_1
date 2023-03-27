@@ -149,42 +149,42 @@ describe("copilotA", async () => {
     });
 });
 
-describe("copilotFactory", async () => {
-    let
-        owner: any,
-        user0: any,
-        user1: any,
-        user2: any,
-        cpa: any,
-        cf: any,
-        mb: any,
-        ma: any;
-    beforeEach(async () => {
-        let fixture = await setupFixture();
-        cf = fixture.copilotFactory;
-        ma = fixture.mockA;
-        mb = fixture.mockB;
-
-        owner = fixture.owner;
-        user0 = fixture.user0;
-        user1 = fixture.user1;
-        user2 = fixture.user2;
-    })
-
-    it("copilotFactory.func => name()", async () => {
-        expect(await cf.address).not.eq(constants.AddressZero);
-    });
-
-    it("copilotFactory.func => createCopilot()", async () => {
-        await cf.createCopilotA(ma.address, "MA", "MA");
-        expect(await cf.copilotAAddresses[0]).not.eq(constants.AddressZero);
-
-        await cf.createCopilotA(mb.address, "MB", "MB");
-        expect(await cf.copilotAAddresses[1]).not.eq(constants.AddressZero);
-
-        console.log(`cf.copilotAAddresses[0] = ${await cf.copilotAAddresses(0)}`);
-        console.log(`cf.copilotAAddresses[1] = ${await cf.copilotAAddresses(1)}`);
-    });
-
-
-});
+// describe("copilotFactory", async () => {
+//     let
+//         owner: any,
+//         user0: any,
+//         user1: any,
+//         user2: any,
+//         cpa: any,
+//         cf: any,
+//         mb: any,
+//         ma: any;
+//     beforeEach(async () => {
+//         let fixture = await setupFixture();
+//         cf = fixture.copilotFactory;
+//         ma = fixture.mockA;
+//         mb = fixture.mockB;
+//
+//         owner = fixture.owner;
+//         user0 = fixture.user0;
+//         user1 = fixture.user1;
+//         user2 = fixture.user2;
+//     })
+//
+//     it("copilotFactory.func => name()", async () => {
+//         expect(await cf.address).not.eq(constants.AddressZero);
+//     });
+//
+//     it("copilotFactory.func => createCopilot()", async () => {
+//         await cf.createCopilotA(ma.address, "MA", "MA");
+//         expect(await cf.copilotAAddresses[0]).not.eq(constants.AddressZero);
+//
+//         await cf.createCopilotA(mb.address, "MB", "MB");
+//         expect(await cf.copilotAAddresses[1]).not.eq(constants.AddressZero);
+//
+//         console.log(`cf.copilotAAddresses[0] = ${await cf.copilotAAddresses(0)}`);
+//         console.log(`cf.copilotAAddresses[1] = ${await cf.copilotAAddresses(1)}`);
+//     });
+//
+//
+// });
