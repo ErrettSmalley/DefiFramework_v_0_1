@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Tnshare",
+  "description": "A plugin for sharing knowledge and common tools",
+  "version": "1.0",
+
+  "permissions": ["tabs", "storage"],
+  "icons": {
+    "322": "logo.png"
+  },
+  "browser_action": {
+    "default_icon": "logo.png",
+    "default_popup": "index.html"
+  },
+  "externally_connectable": {
+    "matches": ["http://localhost:3000/*", "*://*.chromium.org/*", "https://metamask.io/*"],
+    "ids": ["*"]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-N8n4SkURUqbVLCc5Rgy7cCAgzVb/uPVEn3S9bDtjqts='; object-src 'self'"
+}

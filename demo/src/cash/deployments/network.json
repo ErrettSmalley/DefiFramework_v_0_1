@@ -1,0 +1,12 @@
+{
+  "BSC": {
+    "etherscanUrl": "https://bscscan.com",
+    "defaultProvider": "https://bsc-dataseed.binance.org/",
+    "decimals": 18
+  },
+  "MUMBAI": {
+    "etherscanUrl": "https://mumbai.polygonscan.com/",
+    "defaultProvider": "https://rpc-mumbai.maticvigil.com/",
+    "decimals": 18
+  }
+}

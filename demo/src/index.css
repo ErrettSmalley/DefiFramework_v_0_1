@@ -1,0 +1,37 @@
+html,
+body {
+  margin: 0;
+  /* ... */
+  width: 300px; /* 新增 */
+  height: 400px;
+}
+* {
+  font-family: 'PingFangSC-Regular', sans-serif;
+}
+body {
+  margin: 0;
+  font-family: 'PingFangSC-Regular', sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 400px;
+  height: 600px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+ul,
+li,
+dl,
+dd,
+dt,
+p,
+div {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
